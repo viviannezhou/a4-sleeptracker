@@ -102,4 +102,25 @@ export class SleepService {
 		SleepService.AllSleepinessData.push(sleepData);
 		this.saveToStorage(); 
 	}
+
+		// remove a log everywhere it appears, then save
+	public deleteLog(log:SleepData) {
+		SleepService.AllSleepData = SleepService.AllSleepData.filter((item) => item.id !== log.id);
+		// same filter for AllOvernightData or AllSleepinessData depending on the type of log
+		if(log instanceof OvernightSleepData) {
+			SleepService.AllOvernightData = SleepService.AllOvernightData.filter((item) => item.id !== log.id);
+		} else if(log instanceof StanfordSleepinessData) {
+			SleepService.AllSleepinessData = SleepService.AllSleepinessData.filter((item) => item.id !== log.id);
+		}
+		this.saveToStorage();
+	}
+
+	// put a deleted log back (used by the Undo button)
+	public restoreLog(log:SleepData) {
+		if (log instanceof OvernightSleepData) {
+			this.logOvernightData(log);
+		} else if (log instanceof StanfordSleepinessData) {
+			this.logSleepinessData(log);
+		}
+	}
 }
