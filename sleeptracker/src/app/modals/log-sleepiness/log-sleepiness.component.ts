@@ -22,6 +22,9 @@ export class LogSleepinessComponent {
   // time defaults to right now, since most people log in the moment
   loggedAt:string = this.toLocalString(new Date());
 
+  // latest time allowed in the picker, so nobody can log a future check-in
+  now:string = this.toLocalString(new Date());
+
   constructor(private modalController:ModalController) {}
 
   // uh-oh button: close without saving

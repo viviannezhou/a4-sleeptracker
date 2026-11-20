@@ -36,7 +36,7 @@
   <!-- time picker that pops up when the time button is tapped -->
   <ion-modal [keepContentsMounted]="true">
     <ng-template>
-      <ion-datetime id="loggedAt" [(ngModel)]="loggedAt"></ion-datetime>
+      <ion-datetime id="loggedAt" [(ngModel)]="loggedAt" [max]="now"></ion-datetime>
     </ng-template>
   </ion-modal>
 </ion-content>

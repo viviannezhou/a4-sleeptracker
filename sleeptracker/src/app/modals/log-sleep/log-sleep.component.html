@@ -28,19 +28,19 @@
   @if (isValid) {
     <p class="ion-padding-start">That's {{ hoursSlept.toFixed(1) }} hours of sleep.</p>
   } @else {
-    <ion-note color="danger" class="ion-padding-start">Wake-up time has to be after bedtime.</ion-note>
+    <ion-note color="danger" class="ion-padding-start">Wake-up time has to be after bedtime and can't be in the future.</ion-note>
   }
 
   <!-- the pickers pop up when the date buttons above are tapped -->
   <ion-modal [keepContentsMounted]="true">
     <ng-template>
-      <ion-datetime id="bedtime" [(ngModel)]="bedtime"></ion-datetime>
+      <ion-datetime id="bedtime" [(ngModel)]="bedtime" [max]="now"></ion-datetime>
     </ng-template>
   </ion-modal>
   <!-- wake-up time picker -->
   <ion-modal [keepContentsMounted]="true">
     <ng-template>
-      <ion-datetime id="wakeTime" [(ngModel)]="wakeTime"></ion-datetime>
+      <ion-datetime id="wakeTime" [(ngModel)]="wakeTime" [max]="now"></ion-datetime>
     </ng-template>
   </ion-modal>
 </ion-content>

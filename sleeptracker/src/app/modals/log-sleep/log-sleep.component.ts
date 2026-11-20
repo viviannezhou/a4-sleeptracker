@@ -15,6 +15,9 @@ export class LogSleepComponent {
   bedtime:string;
   wakeTime:string;
 
+  // latest time allowed in the pickers, so nobody can log a future night
+  now:string = this.toLocalString(new Date());
+
   constructor(private modalController:ModalController) {
     // default to a typical night: 11pm last night to 7am today, so most people only adjust slightly
     let bed = new Date();
@@ -22,6 +25,12 @@ export class LogSleepComponent {
     bed.setHours(23, 0, 0, 0);
     let wake = new Date();
     wake.setHours(7, 0, 0, 0);
+
+    // if it's not 7am yet, default wake-up to right now instead
+    if (wake > new Date()) {
+      wake = new Date();
+    }
+
     this.bedtime = this.toLocalString(bed);
     this.wakeTime = this.toLocalString(wake);
   }
@@ -34,7 +43,7 @@ export class LogSleepComponent {
   // error prevention: only allow saving when wake-up is after bedtime and the night is under 24 hours
   get isValid():boolean {
     // valid if they slept more than 0 hours and less than 24 hours
-    return this.hoursSlept > 0 && this.hoursSlept < 24;
+    return this.hoursSlept > 0 && this.hoursSlept < 24 && new Date(this.wakeTime) <= new Date();
   }
 
   // uh-oh button: close without saving

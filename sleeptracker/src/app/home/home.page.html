@@ -1,30 +1,61 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Today</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Today</ion-title>
     </ion-toolbar>
   </ion-header>
 
-    <!-- temporary: shows every log so we can test that storage works -->
-  <ion-button (click)="addTestLog()">Add test log</ion-button>
-  <ion-button (click)="openLogSleep()">Log last night</ion-button>
-  <ion-button (click)="openLogSleepiness()">How sleepy are you?</ion-button>
-  <ion-list>
-    @for (log of allSleepData; track log.id) {
-      <ion-item>
-        <ion-label>
-          <h3>{{ log.dateString() }}</h3>
-          <p>{{ log.summaryString() }}</p>
-        </ion-label>
-      </ion-item>
-    }
-  </ion-list>
+  <!-- last night's sleep: the first thing you see when you open the app -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Last night</ion-card-subtitle>
+      @if (lastNight) {
+        <ion-card-title>{{ lastNight.summaryString() }}</ion-card-title>
+      } @else {
+        <ion-card-title>No sleep logged yet</ion-card-title>
+      }
+    </ion-card-header>
+    <ion-card-content>
+      @if (lastNight) {
+        <p>{{ timeString(lastNight.SleepStart) }} to {{ timeString(lastNight.SleepEnd) }}</p>
+      }
+      <ion-button expand="block" (click)="openLogSleep()">
+        <ion-icon slot="start" name="bed-outline"></ion-icon>
+        Log last night
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- today's sleepiness check-ins -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Today's check-ins</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      @if (todaysCheckIns.length === 0) {
+        <p>No check-ins yet today. How are you feeling?</p>
+      }
+      <ion-list lines="none">
+        @for (log of todaysCheckIns; track log.id) {
+          <ion-item>
+            <ion-badge slot="start">{{ log.LoggedValue }}</ion-badge>
+            <ion-label class="ion-text-wrap">
+              <h3>{{ timeString(log.loggedAt) }}</h3>
+              <p>{{ descriptions[log.LoggedValue] }}</p>
+            </ion-label>
+          </ion-item>
+        }
+      </ion-list>
+      <ion-button expand="block" fill="outline" (click)="openLogSleepiness()">
+        <ion-icon slot="start" name="cafe-outline"></ion-icon>
+        Check in sleepiness
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
