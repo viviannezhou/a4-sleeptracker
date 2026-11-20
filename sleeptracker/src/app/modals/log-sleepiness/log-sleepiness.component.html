@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Log Sleepiness</ion-title>
+    <ion-buttons slot="end">
+      <!-- disable Save until a level is picked -->
+      <ion-button (click)="save()" [disabled]="sleepiness === undefined" [strong]="true">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Time</ion-label>
+      <ion-datetime-button datetime="loggedAt"></ion-datetime-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- all 7 levels with descriptions, so no one has to remember what each number means -->
+  <ion-list>
+    <ion-list-header>How sleepy do you feel?</ion-list-header>
+    <ion-radio-group [(ngModel)]="sleepiness">
+      @for (level of levels; track level) {
+        <ion-item>
+          <ion-radio [value]="level" class="ion-text-wrap" justify="space-between">
+            <strong>{{ level }}</strong> &nbsp; {{ descriptions[level] }}
+          </ion-radio>
+        </ion-item>
+      }
+    </ion-radio-group>
+  </ion-list>
+
+  <!-- time picker that pops up when the time button is tapped -->
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="loggedAt" [(ngModel)]="loggedAt"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-content>

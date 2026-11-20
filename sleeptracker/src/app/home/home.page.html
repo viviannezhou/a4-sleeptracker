@@ -16,6 +16,7 @@
     <!-- temporary: shows every log so we can test that storage works -->
   <ion-button (click)="addTestLog()">Add test log</ion-button>
   <ion-button (click)="openLogSleep()">Log last night</ion-button>
+  <ion-button (click)="openLogSleepiness()">How sleepy are you?</ion-button>
   <ion-list>
     @for (log of allSleepData; track log.id) {
       <ion-item>

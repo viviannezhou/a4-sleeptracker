@@ -5,6 +5,7 @@ import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { LogSleepComponent } from '../modals/log-sleep/log-sleep.component';
+import { LogSleepinessComponent } from '../modals/log-sleepiness/log-sleepiness.component';
 
 @Component({
   selector: 'app-home',
@@ -40,6 +41,20 @@ export class HomePage {
 			modal.onDidDismiss().then((result) => {
 				if (result.role === 'save') {
 					this.sleepService.logOvernightData(new OvernightSleepData(result.data.bedtime, result.data.wakeTime));
+				}
+			});
+		});
+	}
+
+	// open the log sleepiness modal, then save the rating if they tapped Save
+	openLogSleepiness() {
+		this.modalController.create({
+			component: LogSleepinessComponent
+		}).then((modal) => {
+			modal.present();
+			modal.onDidDismiss().then((result) => {
+				if (result.role === 'save') {
+					this.sleepService.logSleepinessData(new StanfordSleepinessData(result.data.value, result.data.loggedAt));
 				}
 			});
 		});
