@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
-import { StorageService } from './storage.service'; // NEW
+import { StorageService } from './storage.service'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class SleepService {
-	private static Loaded:boolean = false; // NEW (replaces LoadDefaultData)
+	private static Loaded:boolean = false; // so saved data only loads once 
 	public static AllSleepData:SleepData[] = [];
 	public static AllOvernightData:OvernightSleepData[] = [];
 	public static AllSleepinessData:StanfordSleepinessData[] = [];
@@ -94,12 +94,12 @@ export class SleepService {
 	public logOvernightData(sleepData:OvernightSleepData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllOvernightData.push(sleepData);
-		this.saveToStorage(); // NEW
+		this.saveToStorage(); 
 	}
 
 	public logSleepinessData(sleepData:StanfordSleepinessData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllSleepinessData.push(sleepData);
-		this.saveToStorage(); // NEW
+		this.saveToStorage(); 
 	}
 }
