@@ -21,6 +21,11 @@ export class StanfordSleepinessData extends SleepData {
 		this.loggedAt = loggedAt;
 	}
 
+	// getter so the sleep service can save the 1-7 value to storage
+	get LoggedValue():number {
+		return this.loggedValue;
+	}
+
 	override summaryString():string {
 		return this.loggedValue + ": " + StanfordSleepinessData.ScaleValues[this.loggedValue];
 	}

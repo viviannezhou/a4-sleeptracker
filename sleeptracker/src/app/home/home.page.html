@@ -13,8 +13,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <!-- temporary: shows every log so we can test that storage works -->
+  <ion-button (click)="addTestLog()">Add test log</ion-button>
+  <ion-button (click)="openLogSleep()">Log last night</ion-button>
+  <ion-list>
+    @for (log of allSleepData; track log.id) {
+      <ion-item>
+        <ion-label>
+          <h3>{{ log.dateString() }}</h3>
+          <p>{{ log.summaryString() }}</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
 </ion-content>

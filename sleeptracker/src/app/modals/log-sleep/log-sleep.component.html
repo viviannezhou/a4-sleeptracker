@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- iOS convention: Cancel on the left, Save on the right -->
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Log Sleep</ion-title>
+    <ion-buttons slot="end">
+      <!-- Save is disabled until the times make sense (error prevention) -->
+      <ion-button (click)="save()" [disabled]="!isValid" [strong]="true">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>Went to bed</ion-label>
+      <ion-datetime-button datetime="bedtime"></ion-datetime-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Woke up</ion-label>
+      <ion-datetime-button datetime="wakeTime"></ion-datetime-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- show the total, or explain what's wrong -->
+  @if (isValid) {
+    <p class="ion-padding-start">That's {{ hoursSlept.toFixed(1) }} hours of sleep.</p>
+  } @else {
+    <ion-note color="danger" class="ion-padding-start">Wake-up time has to be after bedtime.</ion-note>
+  }
+
+  <!-- the pickers pop up when the date buttons above are tapped -->
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="bedtime" [(ngModel)]="bedtime"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+  <!-- wake-up time picker -->
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="wakeTime" [(ngModel)]="wakeTime"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-content>
