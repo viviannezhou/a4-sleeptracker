@@ -34,4 +34,16 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+/* @import '@ionic/angular/css/palettes/dark.system.css'; */
+
+// soft, rounded cards with a light pink shadow
+ion-card {
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(199, 107, 133, 0.12);
+}
+
+// pastel pink badges for sleepiness levels
+ion-badge {
+  --background: #F7C6D3;
+  --color: #6B4F5C;
+}

@@ -1,2 +1,49 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+// Moonlog color theme: soft pastel pink, cream, baby blue, and butter yellow
+// https://ionicframework.com/docs/theming/colors
+
+:root {
+  // main buttons and active tab: dusty rose (deep enough that white text stays readable)
+  --ion-color-primary: #C76B85;
+  --ion-color-primary-rgb: 199, 107, 133;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #AF5E75;
+  --ion-color-primary-tint: #CD7A91;
+
+  // baby blue accent
+  --ion-color-secondary: #BFD7EA;
+  --ion-color-secondary-rgb: 191, 215, 234;
+  --ion-color-secondary-contrast: #6B4F5C;
+  --ion-color-secondary-contrast-rgb: 107, 79, 92;
+  --ion-color-secondary-shade: #A8BDCE;
+  --ion-color-secondary-tint: #C5DBEC;
+
+  // butter yellow accent
+  --ion-color-tertiary: #F6E7A6;
+  --ion-color-tertiary-rgb: 246, 231, 166;
+  --ion-color-tertiary-contrast: #6B4F5C;
+  --ion-color-tertiary-contrast-rgb: 107, 79, 92;
+  --ion-color-tertiary-shade: #D8CB92;
+  --ion-color-tertiary-tint: #F7E9AF;
+
+  // sage accent
+  --ion-color-success: #B9D8C2;
+  --ion-color-success-rgb: 185, 216, 194;
+  --ion-color-success-contrast: #6B4F5C;
+  --ion-color-success-contrast-rgb: 107, 79, 92;
+  --ion-color-success-shade: #A3BEAB;
+  --ion-color-success-tint: #C0DCC8;
+
+  // cream background and soft mauve-brown text everywhere
+  --ion-background-color: #FFF8F0;
+  --ion-background-color-rgb: 255, 248, 240;
+  --ion-text-color: #6B4F5C;
+  --ion-text-color-rgb: 107, 79, 92;
+
+  // toolbars, tab bar, lists, and cards
+  --ion-toolbar-background: #FFF8F0;
+  --ion-tab-bar-background: #FFFBF9;
+  --ion-tab-bar-color-selected: #C76B85;
+  --ion-item-background: #FFFBF9;
+  --ion-card-background: #FFFBF9;
+}

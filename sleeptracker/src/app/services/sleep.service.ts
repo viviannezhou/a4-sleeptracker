@@ -28,8 +28,7 @@ export class SleepService {
 		let savedSleepiness = await this.storage.get('sleepiness');
 
 		if(!savedOvernight && !savedSleepiness) {
-			// nothing saved yet, so start with the starter code's sample data
-			this.addDefaultData();
+			// nothing saved yet, so a new user starts with an empty app
 			return;
 		}
 
@@ -70,25 +69,6 @@ export class SleepService {
 
 		this.storage.set('overnight', overnight);
 		this.storage.set('sleepiness', sleepiness);
-	}
-
-	private addDefaultData() {
-		var goToBed = new Date();
-		goToBed.setDate(goToBed.getDate() - 1); //set to yesterday
-		goToBed.setHours(1, 3, 0); //1:03am
-		var wakeUp = new Date();
-		wakeUp.setTime(goToBed.getTime() + 8 * 60 * 60 * 1000); //Sleep for exactly eight hours, waking up at 9:03am
-		this.logOvernightData(new OvernightSleepData(goToBed, wakeUp)); // add that person was asleep 1am-9am yesterday
-		var sleepinessDate = new Date();
-		sleepinessDate.setDate(sleepinessDate.getDate() - 1); //set to yesterday
-		sleepinessDate.setHours(14, 38, 0); //2:38pm
-		this.logSleepinessData(new StanfordSleepinessData(4, sleepinessDate)); // add sleepiness at 2pm
-		goToBed = new Date();
-		goToBed.setDate(goToBed.getDate() - 1); //set to yesterday
-		goToBed.setHours(23, 11, 0); //11:11pm
-		wakeUp = new Date();
-		wakeUp.setTime(goToBed.getTime() + 9 * 60 * 60 * 1000); //Sleep for exactly nine hours
-		this.logOvernightData(new OvernightSleepData(goToBed, wakeUp));
 	}
 
 	public logOvernightData(sleepData:OvernightSleepData) {

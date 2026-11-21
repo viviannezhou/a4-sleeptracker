@@ -14,12 +14,12 @@
   <!-- last night's sleep: the first thing you see when you open the app -->
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Last night</ion-card-subtitle>
       @if (lastNight) {
         <ion-card-title>{{ lastNight.summaryString() }}</ion-card-title>
       } @else {
         <ion-card-title>No sleep logged yet</ion-card-title>
       }
+      <ion-card-subtitle>Last night</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       @if (lastNight) {
