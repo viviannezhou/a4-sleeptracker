@@ -26,6 +26,9 @@
           <ion-label class="ion-text-wrap">
             <h3>{{ log.dateString() }}</h3>
             <p>{{ log.summaryString() }}</p>
+            @if (log.note) {
+              <p class="note">"{{ log.note }}"</p>
+            }
           </ion-label>
         </ion-item>
         <ion-item-options side="end">

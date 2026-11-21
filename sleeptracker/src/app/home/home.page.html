@@ -24,6 +24,9 @@
     <ion-card-content>
       @if (lastNight) {
         <p>{{ timeString(lastNight.SleepStart) }} to {{ timeString(lastNight.SleepEnd) }}</p>
+        @if (lastNight.note) {
+          <p class="note">"{{ lastNight.note }}"</p>
+        }
       }
       <ion-button expand="block" (click)="openLogSleep()">
         <ion-icon slot="start" name="bed-outline"></ion-icon>
@@ -48,6 +51,9 @@
             <ion-label class="ion-text-wrap">
               <h3>{{ timeString(log.loggedAt) }}</h3>
               <p>{{ descriptions[log.LoggedValue] }}</p>
+              @if (log.note) {
+                <p class="note">"{{ log.note }}"</p>
+              }
             </ion-label>
           </ion-item>
         }

@@ -37,6 +37,7 @@ export class SleepService {
 			let night = new OvernightSleepData(new Date(saved.start), new Date(saved.end));
 			night.id = saved.id;
 			night.loggedAt = new Date(saved.loggedAt);
+			night.note = saved.note ?? ''; // older logs saved before notes existed won't have one
 			SleepService.AllSleepData.push(night);
 			SleepService.AllOvernightData.push(night);
 		}
@@ -46,6 +47,7 @@ export class SleepService {
 			let log = new StanfordSleepinessData(saved.value, new Date(saved.loggedAt));
 			log.id = saved.id;
 			log.loggedAt = new Date(saved.loggedAt);
+			log.note = saved.note ?? ''; // older logs saved before notes existed won't have one
 			SleepService.AllSleepData.push(log);
 			SleepService.AllSleepinessData.push(log);
 		}
@@ -59,12 +61,14 @@ export class SleepService {
 			loggedAt: night.loggedAt.toISOString(),
 			start: night.SleepStart.toISOString(),
 			end: night.SleepEnd.toISOString(),
+			note: night.note,
 		}));
 
 		let sleepiness = SleepService.AllSleepinessData.map((log) => ({
 			id: log.id,
 			loggedAt: log.loggedAt.toISOString(),
 			value: log.LoggedValue,
+			note: log.note,
 		}));
 
 		this.storage.set('overnight', overnight);
@@ -83,7 +87,7 @@ export class SleepService {
 		this.saveToStorage(); 
 	}
 
-		// remove a log everywhere it appears, then save
+	// remove a log everywhere it appears, then save
 	public deleteLog(log:SleepData) {
 		SleepService.AllSleepData = SleepService.AllSleepData.filter((item) => item.id !== log.id);
 		// same filter for AllOvernightData or AllSleepinessData depending on the type of log

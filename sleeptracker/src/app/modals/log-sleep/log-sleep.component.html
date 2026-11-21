@@ -24,6 +24,14 @@
     </ion-item>
   </ion-list>
 
+    <!-- optional note; maxlength keeps it short so it fits on the cards (error prevention) -->
+  <ion-list>
+    <ion-item>
+      <ion-textarea label="Note (optional)" labelPlacement="stacked" [(ngModel)]="note"
+        placeholder="e.g. up late studying for a midterm" [maxlength]="100" [counter]="true" [autoGrow]="true"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
   <!-- show the total, or explain what's wrong -->
   @if (isValid) {
     <p class="ion-padding-start">That's {{ hoursSlept.toFixed(1) }} hours of sleep.</p>

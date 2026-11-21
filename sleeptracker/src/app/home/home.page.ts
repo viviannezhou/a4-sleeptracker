@@ -62,10 +62,12 @@ export class HomePage {
 		}).then((modal) => {
 			modal.present();
 			modal.onDidDismiss().then((result) => {
-				if (result.role === 'save') {
-					this.sleepService.logOvernightData(new OvernightSleepData(result.data.bedtime, result.data.wakeTime));
-					this.showToast('Sleep logged');
-				}
+					if (result.role === 'save') {
+						let night = new OvernightSleepData(result.data.bedtime, result.data.wakeTime);
+						night.note = result.data.note;
+						this.sleepService.logOvernightData(night);
+						this.showToast('Sleep logged');
+					}
 			});
 		});
 	}
@@ -77,11 +79,12 @@ export class HomePage {
 		}).then((modal) => {
 			modal.present();
 			modal.onDidDismiss().then((result) => {
-				if (result.role === 'save') {
-					this.sleepService.logSleepinessData(new StanfordSleepinessData(result.data.value, result.data.loggedAt));
-					// show a toast saying the check-in was saved
-					this.showToast('Check-in saved');
-				}
+					if (result.role === 'save') {
+						let sleepiness = new StanfordSleepinessData(result.data.value, result.data.loggedAt);
+						sleepiness.note = result.data.note;
+						this.sleepService.logSleepinessData(sleepiness);
+						this.showToast('Check-in saved');
+					}
 			});
 		});
 	}

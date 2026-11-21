@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonList, IonListHeader, IonItem, IonLabel,
-  IonRadioGroup, IonRadio, IonDatetime, IonDatetimeButton, IonModal, ModalController } from '@ionic/angular/standalone';
+  IonRadioGroup, IonRadio, IonDatetime, IonDatetimeButton, IonModal, IonTextarea, ModalController } from '@ionic/angular/standalone';
 import { StanfordSleepinessData } from '../../data/stanford-sleepiness-data';
 
 @Component({
@@ -9,7 +9,7 @@ import { StanfordSleepinessData } from '../../data/stanford-sleepiness-data';
   templateUrl: './log-sleepiness.component.html',
   styleUrls: ['./log-sleepiness.component.scss'],
   imports: [FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonList, IonListHeader,
-    IonItem, IonLabel, IonRadioGroup, IonRadio, IonDatetime, IonDatetimeButton, IonModal],
+    IonItem, IonLabel, IonRadioGroup, IonRadio, IonDatetime, IonDatetimeButton, IonModal, IonTextarea],
 })
 export class LogSleepinessComponent {
   // the 7 levels of the Stanford Sleepiness Scale and their descriptions (from the starter data class)
@@ -24,6 +24,9 @@ export class LogSleepinessComponent {
 
   // latest time allowed in the picker, so nobody can log a future check-in
   now:string = this.toLocalString(new Date());
+  
+  // optional note, like "after 9am lecture, had matcha"
+  note:string = '';
 
   constructor(private modalController:ModalController) {}
 
@@ -34,7 +37,7 @@ export class LogSleepinessComponent {
 
   // send the rating and time back to the page that opened this modal
   save() {
-    this.modalController.dismiss({ value: this.sleepiness, loggedAt: new Date(this.loggedAt) }, 'save');
+    this.modalController.dismiss({ value: this.sleepiness, loggedAt: new Date(this.loggedAt), note: this.note }, 'save');
   }
 
   // turns a Date into a local "YYYY-MM-DDTHH:mm:ss" string for the picker

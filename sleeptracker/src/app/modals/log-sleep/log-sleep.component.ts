@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonList, IonItem, IonLabel,
-  IonDatetime, IonDatetimeButton, IonModal, IonNote, ModalController } from '@ionic/angular/standalone';
+  IonDatetime, IonDatetimeButton, IonModal, IonNote, IonTextarea, ModalController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-log-sleep',
   templateUrl: './log-sleep.component.html',
   styleUrls: ['./log-sleep.component.scss'],
   imports: [FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonList, IonItem,
-    IonLabel, IonDatetime, IonDatetimeButton, IonModal, IonNote],
+    IonLabel, IonDatetime, IonDatetimeButton, IonModal, IonNote, IonTextarea],
 })
 export class LogSleepComponent {
   // the pickers use date strings like "2026-11-20T07:00:00"
   bedtime:string;
   wakeTime:string;
+  // optional note, like "stayed up studying"
+  note:string = '';
 
   // latest time allowed in the pickers, so nobody can log a future night
   now:string = this.toLocalString(new Date());
@@ -53,7 +55,7 @@ export class LogSleepComponent {
 
   // send the times back to the page that opened this modal
   save() {
-    this.modalController.dismiss({ bedtime: new Date(this.bedtime), wakeTime: new Date(this.wakeTime) }, 'save');
+    this.modalController.dismiss({ bedtime: new Date(this.bedtime), wakeTime: new Date(this.wakeTime), note: this.note }, 'save');
   }
 
   // turns a Date into a local "YYYY-MM-DDTHH:mm:ss" string for the picker
