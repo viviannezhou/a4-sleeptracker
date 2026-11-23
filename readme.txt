@@ -41,6 +41,7 @@ None, I worked alone.
 
 Nothing special. The app starts empty, so log a night or a check-in to see data.
 
+Demo timestamps (demo.mov): 0:00 empty Today page, 0:03 log sleep (0:12 error prevention when wake-up is before bedtime), 0:32 Cancel on the sleepiness modal, 0:36 log sleepiness with Save disabled until a level is picked, 0:51 Today page showing both logs with notes, 0:55 History filters, 1:03 swipe to delete and Undo, 1:10 refresh showing the data is saved.
 
 --Aim for no more than two sentences for each of the following questions.--
 
