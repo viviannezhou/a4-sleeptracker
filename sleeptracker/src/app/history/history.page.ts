@@ -20,13 +20,15 @@ export class HistoryPage {
 	filter:string = 'all';
 
 	constructor(private sleepService:SleepService, private toastController:ToastController) {
-		addIcons({ bedOutline, cafeOutline, trashOutline });
+		// register the icones used in the list (Lecture 13, slide 21)
+    addIcons({ bedOutline, cafeOutline, trashOutline });
 	}
 
 	// the logs to show, based on the filter, newest first
 	get logs():SleepData[] {
 		let list:SleepData[];
 		if (this.filter === 'sleep') {
+      // copy the overnight sleep list
 			list = [...SleepService.AllOvernightData];
 		} else if (this.filter === 'sleepiness') {
 			// copy the sleepiness list

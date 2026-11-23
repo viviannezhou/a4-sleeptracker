@@ -75,12 +75,14 @@ export class SleepService {
 		this.storage.set('sleepiness', sleepiness);
 	}
 
+	// add a night of sleep to the lists, then save
 	public logOvernightData(sleepData:OvernightSleepData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllOvernightData.push(sleepData);
 		this.saveToStorage(); 
 	}
 
+	// add a sleepiness check-in to the lists, then save
 	public logSleepinessData(sleepData:StanfordSleepinessData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllSleepinessData.push(sleepData);

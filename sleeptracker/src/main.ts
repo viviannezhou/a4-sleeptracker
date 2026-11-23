@@ -11,7 +11,7 @@ import { AppComponent } from './app/app.component';
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    //use iOS styling everywhere, since the app follows Apple's design guidelines
+    // use iOS styling everywhere, since the app follows Apple's design guidelines
     provideIonicAngular({mode: 'ios'}),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     // set up Ionic Storage, using IndexedDB first (like the lecture 16 demo)
